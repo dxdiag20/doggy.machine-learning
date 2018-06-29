@@ -7,7 +7,7 @@ Created on Fri June 29 07:16:04 2018
 import tensorflow as tf
 import sys
 import os
-from googletrans import Translator
+
 # Disable tensorflow compilation warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -73,9 +73,7 @@ def classify_image(image_path):
         #print("what she looks like?")
         #print('%s (score = %.5f)' % (label_lines[index], maxScore))
     f.close()
-    translator = Translator()
-    translated = translator.translate(label_lines[index], dest='ko')
-    return translated.text
+    return label_lines[index]
 
 def main():
     #classify_image('/Users/hangeulbae/Desktop/jung.jpg')
