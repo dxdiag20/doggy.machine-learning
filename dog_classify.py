@@ -14,15 +14,15 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 '''
 Classify images from test folder and predict dog breeds along with score.
 '''
-
+dir = os.path.dirname(__file__)
 
 def classify_image(image_path):
     # Loads label file, strips off carriage return
     label_lines = [line.rstrip() for line
-                   in tf.gfile.GFile("dog_labels.txt")]
+                   in tf.gfile.GFile(os.path.join(dir, "dog_labels.txt"))]
 
     # Unpersists graph from file
-    with tf.gfile.FastGFile("dog_graph.pb", 'rb') as f:
+    with tf.gfile.FastGFile(os.path.join(dir, "dog_graph.pb"), 'rb') as f:
         graph_def = tf.GraphDef()
         graph_def.ParseFromString(f.read())
         _ = tf.import_graph_def(graph_def, name='')
